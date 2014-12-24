@@ -1,0 +1,135 @@
+﻿@model SampleApplication.Models.UserModel
+
+@{
+    ViewBag.Title = "Create";
+}
+@section Scripts {
+
+}
+
+<h2>Create</h2>
+
+<form action="\user\create" method="post" name="userForm" id="userForm" enctype="multipart/form-data"
+    oninput="setRangeValue()">
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>General information </legend>
+        <label for="name">
+            Full <span style="text-decoration: underline">n</span>ame<input type="text" name="name"
+                id="name" tabindex="1" placeholder="Enter your name" maxlength="20" accesskey="n"
+                required autocomplete autofocus />
+        </label>
+        <label for="pin">
+            Pin code<input type="tel" name="pin" id="pin" required title="Enter 4 digit pin"
+                tabindex="4"
+                pattern="[0-9]{4}" />
+        </label>
+
+        <label for="password">
+            Password<input type="password" name="name" id="password" placeholder="Enter your password"
+                tabindex="3" required />
+        </label>
+        <label for="email">
+            Email
+            <input type="email" name="email" disabled="disabled" id="email" value="test@test.com" />
+        </label>
+        <label for="url">
+            Site 
+            <input type="url" name="url" id="url" tabindex="2" /></label>
+        <label for="credit">
+            Credit
+            <input type="text" name="credit" readonly="readonly" value="00000000" /></label>
+        <label for="date">
+            Date of birth
+            <input type="date" name="date" id="date" /></label>
+        <select id="ocupation" name="ocupation">
+            <optgroup label="Technical">
+                <option label="Developer" value="dev" selected></option>
+                <option label="Designer" value="des"></option>
+            </optgroup>
+            <optgroup label="non-Technical">
+                <option label="Manager" value="man"></option>
+                <option label="Sales" value="sal"></option>
+            </optgroup>
+
+        </select>
+        <label for="photo">
+            Photo
+            <input type="file" name="photo" />
+
+        </label>
+        <label for="range">
+            <input type="range" min="2" max="10" step="2" name="range" id="range" /></label>
+        <output for="range" id="output" ></output>
+    </fieldset>
+    <fieldset>
+        <legend>Jump info</legend>
+        <label for="count">
+            Jump count
+            <input type="number" min="0" step="1" value="0" name="count" id="count" tabindex="4" /></label>
+        <label for="color">
+            <input type="color" name="color" id="color" /></label>
+        <fieldset>
+            <legend>Gender</legend>
+            <label for="Gender">
+                <input type="radio" name="Gender" value="male" checked="checked">Male</input><br>
+                <input type="radio" name="Gender" value="female">Female</input>
+            </label>
+        </fieldset>
+        <label>
+            Send email
+            <input type="checkbox" name="sendEmail" checked="checked" />
+        </label>
+        <label for="search">
+            Search
+            <input type="search" name="search" /></label>
+        <input list="sides" />
+        <datalist id="sides">
+            <option label="left" value="left"></option>
+            <option label="right" value="right"></option>
+            <option label="top" value="top"></option>
+            <option label="bottom" value="bottom"></option>
+        </datalist>
+        <keygen name="security" form="userForm" challenge="challenge" keytype="RSA">
+    </fieldset>
+  
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Reset" />
+    <input type="button" value="Click!" id="button" />
+    <input type="submit" formnovalidate value="Submit without validation" >
+    <script type="text/javascript">
+        function setRangeValue() {
+            $("#output").val($("#range").val());
+        }
+        (function () {
+
+
+            var formByArray = document.forms[0];
+            var formByName = document.forms["userForm"];
+            var formByProp = document.userForm;
+            var formById = document.getElementById("userForm");
+            var formByJQuery = $("form")[0];
+            
+
+
+            $("#button").click(function (parameters) {
+                var name = $("#name").val();
+                var email = formByArray.email;
+                if (confirm("Submit form?")) {
+                    formByArray.validate();
+                    formByArray.submit();
+                }
+
+            });
+
+
+        })();
+
+    </script>
+</form>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
